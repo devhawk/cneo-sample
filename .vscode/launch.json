@@ -42,6 +42,35 @@
                     "check-result": true
                 }
             }
+        },
+        {
+            "name": "mintTokens",
+            "type": "neo-contract",
+            "request": "launch",
+            "program": "${workspaceFolder}\\bin\\Debug\\netstandard2.0\\publish\\cneo.avm",
+            "args": ["mintTokens", []],
+            "checkpoint": "C:\\Users\\harry\\Source\\neo\\seattle\\sample-cneo\\checkpoints\\cneo-deployed.neo-express-checkpoint",
+            "utxo": {
+                "inputs": [
+                    {
+                        "txid": "f5e388f6a98a133755190f06e4dd3c9d9afd916a1e27b52250f1d54d405086cf",
+                        "n": 0
+                    }
+                ],
+                "outputs": [
+                    {
+                        "asset": "neo",
+                        "value": 1000,
+                        "address": "30f41a14ca6019038b055b585d002b287b5fdd47"
+                    }
+                ]
+            },
+                        "storage": [],
+            "runtime": {
+                "witnesses": {
+                    "check-result": true
+                }
+            }
         }
     ]
 }
