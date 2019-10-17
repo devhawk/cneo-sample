@@ -1,0 +1,16 @@
+{
+  "name": "invoke-mint-tokens",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "mint-tokens": "ts-node invoke-mint-tokens.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^8.0.14",
+    "ts-node": "^8.4.1",
+    "typescript": "^3.6.4"
+  },
+  "dependencies": {
+    "@cityofzion/neon-js": "^4.7.0"
+  }
+}
