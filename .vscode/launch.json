@@ -44,12 +44,54 @@
             }
         },
         {
+            "name": "supportedStandards",
+            "type": "neo-contract",
+            "request": "launch",
+            "program": "${workspaceFolder}\\contract\\bin\\Debug\\netstandard2.0\\publish\\cneo.avm",
+            "args": ["supportedStandards", []],
+            "storage": [],
+            "runtime": {
+                "witnesses": {
+                    "check-result": true
+                }
+            }
+        },
+        {
+            "name": "totalSupply",
+            "type": "neo-contract",
+            "request": "launch",
+            "program": "${workspaceFolder}\\contract\\bin\\Debug\\netstandard2.0\\publish\\cneo.avm",
+            "args": ["totalSupply", []],
+            "checkpoint": "C:\\Users\\harry\\Source\\neo\\seattle\\sample-cneo\\checkpoints\\3-mint-tokens-invoked.neo-express-checkpoint",
+            "storage": [],
+            "runtime": {
+                "witnesses": {
+                    "check-result": true
+                }
+            }
+        },
+        {
+            "name": "balanceOf",
+            "type": "neo-contract",
+            "request": "launch",
+            "program": "${workspaceFolder}\\contract\\bin\\Debug\\netstandard2.0\\publish\\cneo.avm",
+            // TODO: need a way to convert a NEO Address (AXwFY3qdGm6sYn8p59E7ckKWsZwdJyrHdn) to a byte array (0x8a6f1e4f13022b26e56e957cb8251b082f0748b1)
+            "args": ["balanceOf", ["0x8a6f1e4f13022b26e56e957cb8251b082f0748b1"]],
+            "checkpoint": "C:\\Users\\harry\\Source\\neo\\seattle\\sample-cneo\\checkpoints\\3-mint-tokens-invoked.neo-express-checkpoint",
+            "storage": [],
+            "runtime": {
+                "witnesses": {
+                    "check-result": true
+                }
+            }
+        },
+        {
             "name": "mintTokens",
             "type": "neo-contract",
             "request": "launch",
             "program": "${workspaceFolder}\\contract\\bin\\Debug\\netstandard2.0\\publish\\cneo.avm",
             "args": ["mintTokens", []],
-            "checkpoint": "C:\\Users\\harry\\Source\\neo\\seattle\\sample-cneo\\checkpoints\\cneo-deployed.neo-express-checkpoint",
+            "checkpoint": "C:\\Users\\harry\\Source\\neo\\seattle\\sample-cneo\\checkpoints\\2-cneo-deployed.neo-express-checkpoint",
             "utxo": {
                 "inputs": [
                     {
