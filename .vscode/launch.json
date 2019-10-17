@@ -8,7 +8,7 @@
             "name": "decimals",
             "type": "neo-contract",
             "request": "launch",
-            "program": "${workspaceFolder}\\bin\\Debug\\netstandard2.0\\publish\\cneo.avm",
+            "program": "${workspaceFolder}\\contract\\bin\\Debug\\netstandard2.0\\publish\\cneo.avm",
             "args": ["decimals", []],
             "storage": [],
             "runtime": {
@@ -21,7 +21,7 @@
             "name": "name",
             "type": "neo-contract",
             "request": "launch",
-            "program": "${workspaceFolder}\\bin\\Debug\\netstandard2.0\\publish\\cneo.avm",
+            "program": "${workspaceFolder}\\contract\\bin\\Debug\\netstandard2.0\\publish\\cneo.avm",
             "args": ["name", []],
             "storage": [],
             "runtime": {
@@ -34,7 +34,7 @@
             "name": "symbol",
             "type": "neo-contract",
             "request": "launch",
-            "program": "${workspaceFolder}\\bin\\Debug\\netstandard2.0\\publish\\cneo.avm",
+            "program": "${workspaceFolder}\\contract\\bin\\Debug\\netstandard2.0\\publish\\cneo.avm",
             "args": ["symbol", []],
             "storage": [],
             "runtime": {
@@ -47,7 +47,7 @@
             "name": "mintTokens",
             "type": "neo-contract",
             "request": "launch",
-            "program": "${workspaceFolder}\\bin\\Debug\\netstandard2.0\\publish\\cneo.avm",
+            "program": "${workspaceFolder}\\contract\\bin\\Debug\\netstandard2.0\\publish\\cneo.avm",
             "args": ["mintTokens", []],
             "checkpoint": "C:\\Users\\harry\\Source\\neo\\seattle\\sample-cneo\\checkpoints\\cneo-deployed.neo-express-checkpoint",
             "utxo": {
@@ -65,7 +65,7 @@
                     }
                 ]
             },
-                        "storage": [],
+            "storage": [],
             "runtime": {
                 "witnesses": {
                     "check-result": true
