@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "mint-tokens": "ts-node invoke-mint-tokens.ts"
+    "mint-tokens": "ts-node invoke-mint-tokens.ts",
+    "refund": "ts-node invoke-refund.ts"
   },
   "devDependencies": {
     "@types/node": "^8.0.14",
