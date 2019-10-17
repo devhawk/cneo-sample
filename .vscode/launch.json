@@ -1,0 +1,47 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "decimals",
+            "type": "neo-contract",
+            "request": "launch",
+            "program": "${workspaceFolder}\\bin\\Debug\\netstandard2.0\\publish\\cneo.avm",
+            "args": ["decimals", []],
+            "storage": [],
+            "runtime": {
+                "witnesses": {
+                    "check-result": true
+                }
+            }
+        },
+        {
+            "name": "name",
+            "type": "neo-contract",
+            "request": "launch",
+            "program": "${workspaceFolder}\\bin\\Debug\\netstandard2.0\\publish\\cneo.avm",
+            "args": ["name", []],
+            "storage": [],
+            "runtime": {
+                "witnesses": {
+                    "check-result": true
+                }
+            }
+        },
+        {
+            "name": "symbol",
+            "type": "neo-contract",
+            "request": "launch",
+            "program": "${workspaceFolder}\\bin\\Debug\\netstandard2.0\\publish\\cneo.avm",
+            "args": ["symbol", []],
+            "storage": [],
+            "runtime": {
+                "witnesses": {
+                    "check-result": true
+                }
+            }
+        }
+    ]
+}
