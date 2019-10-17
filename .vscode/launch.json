@@ -75,8 +75,22 @@
             "type": "neo-contract",
             "request": "launch",
             "program": "${workspaceFolder}\\contract\\bin\\Debug\\netstandard2.0\\publish\\cneo.avm",
-            // TODO: need a way to convert a NEO Address (AXwFY3qdGm6sYn8p59E7ckKWsZwdJyrHdn) to a byte array (0x8a6f1e4f13022b26e56e957cb8251b082f0748b1)
-            "args": ["balanceOf", ["0x8a6f1e4f13022b26e56e957cb8251b082f0748b1"]],
+            // NEO addresses are prefixed with an '@' symbol as an indicator the string should be converted into a 20 byte array
+            "args": ["balanceOf", ["@AXwFY3qdGm6sYn8p59E7ckKWsZwdJyrHdn"]],
+            "checkpoint": "C:\\Users\\harry\\Source\\neo\\seattle\\sample-cneo\\checkpoints\\3-mint-tokens-invoked.neo-express-checkpoint",
+            "storage": [],
+            "runtime": {
+                "witnesses": {
+                    "check-result": true
+                }
+            }
+        },
+        {
+            "name": "getTxInfo",
+            "type": "neo-contract",
+            "request": "launch",
+            "program": "${workspaceFolder}\\contract\\bin\\Debug\\netstandard2.0\\publish\\cneo.avm",
+            "args": ["getTxInfo", ["0xd2cbfbe9bec47318113e4d41c95174023851df74d7cb2a9e4049d5c84d2b2a6d"]],
             "checkpoint": "C:\\Users\\harry\\Source\\neo\\seattle\\sample-cneo\\checkpoints\\3-mint-tokens-invoked.neo-express-checkpoint",
             "storage": [],
             "runtime": {
@@ -91,11 +105,11 @@
             "request": "launch",
             "program": "${workspaceFolder}\\contract\\bin\\Debug\\netstandard2.0\\publish\\cneo.avm",
             "args": ["mintTokens", []],
-            "checkpoint": "C:\\Users\\harry\\Source\\neo\\seattle\\sample-cneo\\checkpoints\\2-cneo-deployed.neo-express-checkpoint",
+            "checkpoint": "C:\\Users\\harry\\Source\\neo\\seattle\\sample-cneo\\checkpoints\\1-initial-config.neo-express-checkpoint",
             "utxo": {
                 "inputs": [
                     {
-                        "txid": "f5e388f6a98a133755190f06e4dd3c9d9afd916a1e27b52250f1d54d405086cf",
+                        "txid": "0xf5e388f6a98a133755190f06e4dd3c9d9afd916a1e27b52250f1d54d405086cf",
                         "n": 0
                     }
                 ],
@@ -103,7 +117,7 @@
                     {
                         "asset": "neo",
                         "value": 1000,
-                        "address": "30f41a14ca6019038b055b585d002b287b5fdd47"
+                        "address": "0x30f41a14ca6019038b055b585d002b287b5fdd47"
                     }
                 ]
             },
@@ -113,6 +127,45 @@
                     "check-result": true
                 }
             }
-        }
+        },
+        {
+            "name": "refund",
+            "type": "neo-contract",
+            "request": "launch",
+            "program": "${workspaceFolder}\\contract\\bin\\Debug\\netstandard2.0\\publish\\cneo.avm",
+            // NEO addresses are prefixed with an '@' symbol as an indicator the string should be converted into a 20 byte array
+            "args": ["refund", ["@AXwFY3qdGm6sYn8p59E7ckKWsZwdJyrHdn"]],
+            "checkpoint": "C:\\Users\\harry\\Source\\neo\\seattle\\sample-cneo\\checkpoints\\3-mint-tokens-invoked.neo-express-checkpoint",
+            "storage": [],
+            "utxo": {
+                "inputs": [],
+                "outputs": [
+                    {
+                        "asset": "neo",
+                        "value": 500,
+                        "address": "30f41a14ca6019038b055b585d002b287b5fdd47"
+                    }
+                ]
+            },
+            "runtime": {
+                "witnesses": {
+                    "check-result": true
+                }
+            }
+        },
+        {
+            "name": "getRefundTarget",
+            "type": "neo-contract",
+            "request": "launch",
+            "program": "${workspaceFolder}\\contract\\bin\\Debug\\netstandard2.0\\publish\\cneo.avm",
+            "args": ["getRefundTarget", ["0x3cde191e70a75e64feabcc1787de4911e56033815864a47403400057c9236925"]],
+            "checkpoint": "C:\\Users\\harry\\Source\\neo\\seattle\\sample-cneo\\checkpoints\\4-refund-invoked.neo-express-checkpoint",
+            "storage": [],
+            "runtime": {
+                "witnesses": {
+                    "check-result": true
+                }
+            }
+        },
     ]
 }
