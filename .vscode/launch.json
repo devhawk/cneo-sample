@@ -9,8 +9,7 @@
             "type": "neo-contract",
             "request": "launch",
             "program": "${workspaceFolder}\\contract\\bin\\Debug\\netstandard2.0\\publish\\cneo.avm",
-            "args": ["decimals", []],
-            "storage": [],
+            "method": "decimals",
             "runtime": {
                 "witnesses": {
                     "check-result": true
@@ -22,8 +21,7 @@
             "type": "neo-contract",
             "request": "launch",
             "program": "${workspaceFolder}\\contract\\bin\\Debug\\netstandard2.0\\publish\\cneo.avm",
-            "args": ["name", []],
-            "storage": [],
+            "method":"name",
             "runtime": {
                 "witnesses": {
                     "check-result": true
@@ -35,8 +33,7 @@
             "type": "neo-contract",
             "request": "launch",
             "program": "${workspaceFolder}\\contract\\bin\\Debug\\netstandard2.0\\publish\\cneo.avm",
-            "args": ["symbol", []],
-            "storage": [],
+            "method":"symbol",
             "runtime": {
                 "witnesses": {
                     "check-result": true
@@ -48,8 +45,19 @@
             "type": "neo-contract",
             "request": "launch",
             "program": "${workspaceFolder}\\contract\\bin\\Debug\\netstandard2.0\\publish\\cneo.avm",
-            "args": ["supportedStandards", []],
-            "storage": [],
+            "method": "supportedStandards",
+            "runtime": {
+                "witnesses": {
+                    "check-result": true
+                }
+            }
+        },
+        {
+            "name": "totalSupply (none)",
+            "type": "neo-contract",
+            "request": "launch",
+            "program": "${workspaceFolder}\\contract\\bin\\Debug\\netstandard2.0\\publish\\cneo.avm",
+            "method": "totalSupply",
             "runtime": {
                 "witnesses": {
                     "check-result": true
@@ -61,9 +69,8 @@
             "type": "neo-contract",
             "request": "launch",
             "program": "${workspaceFolder}\\contract\\bin\\Debug\\netstandard2.0\\publish\\cneo.avm",
-            "args": ["totalSupply", []],
+            "method": "totalSupply",
             "checkpoint": "C:\\Users\\harry\\Source\\neo\\seattle\\sample-cneo\\checkpoints\\3-mint-tokens-invoked.neo-express-checkpoint",
-            "storage": [],
             "runtime": {
                 "witnesses": {
                     "check-result": true
@@ -75,10 +82,10 @@
             "type": "neo-contract",
             "request": "launch",
             "program": "${workspaceFolder}\\contract\\bin\\Debug\\netstandard2.0\\publish\\cneo.avm",
+            "method": "balanceOf",
             // NEO addresses are prefixed with an '@' symbol as an indicator the string should be converted into a 20 byte array
-            "args": ["balanceOf", ["@AXwFY3qdGm6sYn8p59E7ckKWsZwdJyrHdn"]],
+            "args": ["@AXwFY3qdGm6sYn8p59E7ckKWsZwdJyrHdn"],
             "checkpoint": "C:\\Users\\harry\\Source\\neo\\seattle\\sample-cneo\\checkpoints\\3-mint-tokens-invoked.neo-express-checkpoint",
-            "storage": [],
             "runtime": {
                 "witnesses": {
                     "check-result": true
@@ -90,7 +97,8 @@
             "type": "neo-contract",
             "request": "launch",
             "program": "${workspaceFolder}\\contract\\bin\\Debug\\netstandard2.0\\publish\\cneo.avm",
-            "args": ["getTxInfo", ["0xd2cbfbe9bec47318113e4d41c95174023851df74d7cb2a9e4049d5c84d2b2a6d"]],
+            "method": "getTxInfo", 
+            "args": ["0xd2cbfbe9bec47318113e4d41c95174023851df74d7cb2a9e4049d5c84d2b2a6d"],
             "checkpoint": "C:\\Users\\harry\\Source\\neo\\seattle\\sample-cneo\\checkpoints\\3-mint-tokens-invoked.neo-express-checkpoint",
             "storage": [],
             "runtime": {
@@ -104,7 +112,7 @@
             "type": "neo-contract",
             "request": "launch",
             "program": "${workspaceFolder}\\contract\\bin\\Debug\\netstandard2.0\\publish\\cneo.avm",
-            "args": ["mintTokens", []],
+            "method": "mintTokens",
             "checkpoint": "C:\\Users\\harry\\Source\\neo\\seattle\\sample-cneo\\checkpoints\\1-initial-config.neo-express-checkpoint",
             "utxo": {
                 "inputs": [
@@ -133,8 +141,9 @@
             "type": "neo-contract",
             "request": "launch",
             "program": "${workspaceFolder}\\contract\\bin\\Debug\\netstandard2.0\\publish\\cneo.avm",
+            "method": "refund",
             // NEO addresses are prefixed with an '@' symbol as an indicator the string should be converted into a 20 byte array
-            "args": ["refund", ["@AXwFY3qdGm6sYn8p59E7ckKWsZwdJyrHdn"]],
+            "args": ["@AXwFY3qdGm6sYn8p59E7ckKWsZwdJyrHdn"],
             "checkpoint": "C:\\Users\\harry\\Source\\neo\\seattle\\sample-cneo\\checkpoints\\3-mint-tokens-invoked.neo-express-checkpoint",
             "storage": [],
             "utxo": {
@@ -158,7 +167,8 @@
             "type": "neo-contract",
             "request": "launch",
             "program": "${workspaceFolder}\\contract\\bin\\Debug\\netstandard2.0\\publish\\cneo.avm",
-            "args": ["getRefundTarget", ["0x3cde191e70a75e64feabcc1787de4911e56033815864a47403400057c9236925"]],
+            "method": "getRefundTarget",
+            "args": ["0x3cde191e70a75e64feabcc1787de4911e56033815864a47403400057c9236925"],
             "checkpoint": "C:\\Users\\harry\\Source\\neo\\seattle\\sample-cneo\\checkpoints\\4-refund-invoked.neo-express-checkpoint",
             "storage": [],
             "runtime": {
