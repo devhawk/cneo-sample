@@ -70,20 +70,22 @@ Studio Code (aka VSCode) and open the folder where you cloned this repository.
 This repository has several files and folders of note for NEO Blockchain Toolkit
 users.
 
-- default.neo-express.json file contains the NEO-Express instance used by this
+- **default.neo-express.json** file contains the NEO-Express instance used by this
   sample.
-- contract folder contains the CNEO smart contract. The C# code is unchanged
+- **contract** folder contains the CNEO smart contract. The C# code is unchanged
   from the [original sample](https://github.com/neo-ngd/CNEO-Contract). However,
   the project build file are different, reflecting the use of .NET Core and the
   Debugger Enhancements fork of the NEON Compiler
-- scripts folder contains two [NEON-JS](https://github.com/CityOfZion/neon-js) scripts
-  for invoking the mintTokens and refund operations of the CNEO smart contract.
-- checkpoints folder contains several checkpoints of the NEO-Express instance in
+- **checkpoints** folder contains several checkpoints of the NEO-Express instance in
   various different states (initial configuration, after CNEO contract deployment,
   after mintTokens operation invoked and after refund operation invoked). These checkpoints
   can be run or restored, but they are of primary use by the debugger
-- .vscode folder contains the [VSCode Launch Configurations](https://code.visualstudio.com/Docs/editor/debugging#_launch-configurations)
+- **.vscode** folder contains the [VSCode Launch Configurations](https://code.visualstudio.com/Docs/editor/debugging#_launch-configurations)
   that invoke the various operations of the CNEO smart contract in the debugger.
+- **scripts** folder contains two [NEON-JS](https://github.com/CityOfZion/neon-js) scripts
+  that were used to invoke the mintTokens and refund operations of the CNEO smart
+  contract. They are included in the repo for reference - the walkthru below does
+  not make further use of these scripts.
 
 ## Visual DevTracker
 
@@ -132,7 +134,78 @@ window. If you want more information about how to use NEO-Express, please see th
 [NEO Blockchain Toolkit for .NET Quickstart](https://github.com/ngdseattle/neo-blockchain-toolkit/blob/master/quickstart.md)
 or the [NEO-Express Command Reference](https://github.com/neo-project/neo-debugger/blob/master/command-reference.md).
 
-<!-- ## Smart Contract Debugger
+## Smart Contract Debugger
 
-This sample repo comes preconfigured to run each of the CNEO sample operations
-in the debugger. To start, simply  -->
+Before we try and debug the smart contract, we need to compile it. From a terminal
+in the repository root directory, execute the following command:
+
+``` shell
+$ dotnet publish
+Microsoft (R) Build Engine version 16.3.0+0f4c62fea for .NET Core
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+  Restore completed in 20.15 ms for C:\Users\harry\Source\neo\seattle\samples\cneo\contract\cneo.csproj.
+  cneo -> C:\Users\harry\Source\neo\seattle\samples\cneo\contract\bin\Debug\netstandard2.0\cneo.dll
+  cneo -> C:\Users\harry\Source\neo\seattle\samples\cneo\contract\bin\Debug\netstandard2.0\publish\
+  Neo.Compiler.MSIL console app v2.5.0.0
+  Find entrypoint:System.Object CNEO.CNEO::Main(System.String,System.Object[])
+  convert succ
+  gen debug succ
+  gen abi succ
+  write:cneo.avm
+  write:cneo.debug.json
+  write:cneo.abi.json
+  SUCC
+```
+
+> Note, we need to use dotnet publish at this time due to 
+  [NEON issue #78](https://github.com/neo-project/neo-devpack-dotnet/issues/78).
+
+This sample repo comes pre-configured to run each of the CNEO sample operations
+in the debugger. To start, simply select the VSCode debugger from the explorer bar,
+choose an operation to run from the dropdown and press the green arrow button to
+start. For more information on the VSCode debugger, please see the
+[official documentation](https://code.visualstudio.com/docs/editor/debugging).
+
+### Debugger Configuration
+
+The NEO Smart Contract Debugger supports several custom attributes to control
+the execution of the contract being debugged. These attributes include:
+
+- **program** - the path to the complied AVM file
+- **args** - JSON array of arguments that will be converted to NEO VM types
+  and passed to the contract entry point. Typically, conversion is straight
+  forward (JSON bool -> NEO VM bool, JSON string -> NEO VM UTF8 encoded byte
+  array), however there are two special encodings to be aware of:
+  - a string prefixed with "0x" will be treated as a hex string and converted
+    to a byte array
+  - a string prefixed with "@" will be treated as a NEO wallet account address
+    and converted into a 20 byte array.
+- **checkpoint** - a path to a NEO-express checkpoint that will provide blockchain
+  data to the contract while it's being debugged.
+- **utxo** - UTXO inputs and outputs to attach to the transaction being debugged.
+  utxo attribute contains input and output fields. input field matches the format
+  of unspent transactions returned by
+  [getunspents](https://docs.neo.org/docs/en-us/reference/rpc/latest-version/api/getunspents.html)
+  RPC endpoint (which you can get from NEO-Express show unspents command).
+  output field matches the format of "Vout" attribute from
+  [getrawtransaction](https://docs.neo.org/docs/en-us/reference/rpc/latest-version/api/getrawtransaction.html)
+  RPC endpoint, except the asset, value and address fields are all lowercase here.
+- **storage** - additional storages for the contract being debugged beyond
+  the storages provided by the checkpoint. Can be used independently of the checkpoint
+  feature. Storage attributes require a key and value string, plus an optional boolean
+  indicating if the storage is constant.
+- **return-types** - NEO VM types of values returned by the contract being debugged.
+  Often, the Main entry point doesn't provide information about the return type while
+  specific named operations do have return type information. For example, CNEO's
+  Main function returns an object while name operation returns a string and the
+  totalSupply operation returns an integer. The return-types attribute tells the
+  debugger what concrete type to use for the return value in cases like this.
+- **runtime** - configure the behavior of the emulated Neo.Runtime service. This
+  attribute has two main sub-attributes
+  - **trigger** - specifies the value returned by `Runtime.Trigger`. Can be either
+    verification or application. application is the default.
+  - **witnesses** - controls the behavior of `Runtime.CheckWitness`. If check-result
+    value is provided, that value is always returned by `Runtime.CheckWitness`. If
+    array of strings is provided, that array is converted to binary addresses and
+    is used as the list of valid witness to verify.
