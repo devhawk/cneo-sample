@@ -4,6 +4,7 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
+        // https://medium.com/@dupski/debug-typescript-in-vs-code-without-compiling-using-ts-node-9d1f4f9a94a
         {
             "name": "invoke-mint-tokens",
             "type": "node",
@@ -161,7 +162,8 @@
                     "check-result": true
                 }
             }
-        },        {
+        },
+        {
             "name": "refund",
             "type": "neo-contract",
             "request": "launch",
@@ -181,12 +183,45 @@
                 "outputs": [
                     {
                         "asset": "neo",
-                        "value": 500,
+                        "value": 1000,
                         "address": "30f41a14ca6019038b055b585d002b287b5fdd47"
                     }
                 ]
             },
             "runtime": {
+                "trigger": "application",
+                "witnesses": {
+                    "check-result": true
+                }
+            }
+        },
+        {
+            "name": "refund (verify)",
+            "type": "neo-contract",
+            "request": "launch",
+            "program": "${workspaceFolder}\\contract\\bin\\Debug\\netstandard2.0\\publish\\cneo.avm",
+            // NEO addresses are prefixed with an '@' symbol as an indicator the string should be converted into a 20 byte array
+            "args": ["refund", ["@AXwFY3qdGm6sYn8p59E7ckKWsZwdJyrHdn"]],
+            "return-types": ["bool"],
+            "checkpoint": "${workspaceFolder}\\checkpoints\\3-mint-tokens-invoked.neo-express-checkpoint",
+            "storage": [],
+            "utxo": {
+                "inputs": [
+                    {
+                        "txid": "0xd2cbfbe9bec47318113e4d41c95174023851df74d7cb2a9e4049d5c84d2b2a6d",
+                        "n": 0
+                    }
+                ],
+                "outputs": [
+                    {
+                        "asset": "neo",
+                        "value": 1000,
+                        "address": "30f41a14ca6019038b055b585d002b287b5fdd47"
+                    }
+                ]
+            },
+            "runtime": {
+                "trigger": "verification",
                 "witnesses": {
                     "check-result": true
                 }
