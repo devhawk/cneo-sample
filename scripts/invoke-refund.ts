@@ -1,22 +1,53 @@
-import Neon, { api, wallet, sc, nep5, rpc } from "@cityofzion/neon-js";
+import Neon, { api, wallet, tx, sc, nep5, rpc, u } from "@cityofzion/neon-js";
 
-const testUserPrivateKey = "10bb731683dddc262d61ddd528ad27d9890c6fbc478b855a67a49cf62c136399";
-const sb = Neon.create.scriptBuilder();
-const rpcUrl = "http://127.0.0.1:49332";
+const testUserAccount = Neon.create.account("10bb731683dddc262d61ddd528ad27d9890c6fbc478b855a67a49cf62c136399");
 const contractScriptHash = "30f41a14ca6019038b055b585d002b287b5fdd47";
+const rpcUrl = "http://127.0.0.1:49332";
 
-const config = {
-    api: new api.neoCli.instance(rpcUrl),
-    account: new wallet.Account(testUserPrivateKey),
-    script: sb.emitAppCall(contractScriptHash, "refund", ["8a6f1e4f13022b26e56e957cb8251b082f0748b1"]).str,
-    intents: api.makeIntent({ NEO: 500 }, contractScriptHash)
- };
- 
- Neon.doInvoke(config)
-    .then(config => {
-        console.log("\n\n--- Response ---");
-        console.log(config.response);
-    })
-    .catch(config => {
-        console.log(config);
+const script = Neon.create.script({
+    scriptHash: contractScriptHash,
+    operation: "refund",
+    args: [testUserAccount.scriptHash]
+});
+
+async function mainAsync() {
+    const contractWitness = await api.getVerificationSignatureForSmartContract(rpcUrl, contractScriptHash);
+
+    let refundTx = new tx.InvocationTransaction({
+        script: script,
+        gas: 0,
+        inputs: [
+            {
+                prevHash: "d2cbfbe9bec47318113e4d41c95174023851df74d7cb2a9e4049d5c84d2b2a6d",
+                prevIndex: 0
+            }],
+        outputs: [
+            {
+                assetId: Neon.CONST.ASSET_ID.NEO,
+                value: 1000,
+                scriptHash: contractScriptHash
+            }
+        ]
     });
+    
+    refundTx.addAttribute(
+        tx.TxAttrUsage.Script, 
+        u.reverseHex(wallet.getScriptHashFromAddress(testUserAccount.address)));
+    
+    const signature = wallet.sign(
+        refundTx.serialize(false),
+        testUserAccount.privateKey);
+    
+    refundTx.addWitness(tx.Witness.fromSignature(signature, testUserAccount.publicKey));
+    refundTx.addWitness(contractWitness);
+
+    console.log(JSON.stringify(refundTx.export(), null, 2));
+    console.log(refundTx.hash);
+    const client = new rpc.RPCClient(rpcUrl);
+    var response = await client.sendRawTransaction(refundTx);
+
+    console.log("\n\n--- Response ---");
+    console.log(response);
+}
+
+mainAsync().catch(err => { console.log(err); });
