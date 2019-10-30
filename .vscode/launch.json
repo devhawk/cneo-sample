@@ -5,6 +5,26 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "invoke-mint-tokens",
+            "type": "node",
+            "request": "launch",
+            "args": ["invoke-mint-tokens.ts"],
+            "runtimeArgs": ["--nolazy", "-r", "ts-node/register"],
+            "sourceMaps": true,
+            "cwd": "${workspaceRoot}/scripts",
+            "protocol": "inspector",
+        },
+        {
+            "name": "invoke-refund",
+            "type": "node",
+            "request": "launch",
+            "args": ["invoke-refund.ts"],
+            "runtimeArgs": ["--nolazy", "-r", "ts-node/register"],
+            "sourceMaps": true,
+            "cwd": "${workspaceRoot}/scripts",
+            "protocol": "inspector",
+        },
+        {
             "name": "decimals",
             "type": "neo-contract",
             "request": "launch",
