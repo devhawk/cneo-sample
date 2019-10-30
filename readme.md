@@ -195,6 +195,8 @@ the execution of the contract being debugged. These attributes include:
   the storages provided by the checkpoint. Can be used independently of the checkpoint
   feature. Storage attributes require a key and value string, plus an optional boolean
   indicating if the storage is constant.
+  - for an example of configuring emulated storage, please see the
+    [Domain sample smart contract](https://github.com/ngdseattle/domain-sample)
 - **return-types** - NEO VM types of values returned by the contract being debugged.
   Often, the Main entry point doesn't provide information about the return type while
   specific named operations do have return type information. For example, CNEO's
