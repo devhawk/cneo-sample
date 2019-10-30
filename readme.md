@@ -96,13 +96,13 @@ the following command.
 
 ``` shell
 $ neo-express checkpoint restore .\checkpoints\4-refund-invoked.neo-express-checkpoint --force
-Checkpoint .\checkpoints\4-refund-invoked.neo-express-checkpoint sucessfully restored
+Checkpoint .\checkpoints\4-refund-invoked.neo-express-checkpoint successfully restored
 ```
 
 You open Visual DevTracker by selecting a blockchain from the Neo RPC Servers
 window in the VSCode Explorer view.
 
-![Neo-Express config detection](screenshots\visual-devtracker-1.png)
+![Neo-Express config detection](images\visual-devtracker-1.png)
 
 You can immediately get a feel for the tracker by selecting either MainNet or
 TestNet. To inspect the CNEO sample blockchain instance, we need to start Neo Express.
