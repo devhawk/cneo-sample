@@ -23,10 +23,15 @@ async function mainAsync() {
         ]
     });
 
-    const signature = wallet.sign(
-        transferTx.serialize(false),
-        testUserAccount.privateKey);
-    transferTx.addWitness(tx.Witness.fromSignature(signature, testUserAccount.publicKey));
+    // I need to emit two parameters here, but the values don't matter
+    // as cneo verification doesn't use them
+    
+    const contractWitness = new tx.Witness({
+        invocationScript: "0000",
+        verificationScript: ""
+    })
+    contractWitness.scriptHash = contractScriptHash;
+    transferTx.addWitness(contractWitness);
 
     console.log(JSON.stringify(transferTx.export(), null, 2));
     console.log(transferTx.hash);
