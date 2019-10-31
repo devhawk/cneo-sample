@@ -42,9 +42,7 @@ async function mainAsync() {
 
     // I need to emit two parameters here, but the values don't matter
     // as cneo verification doesn't use them
-    const sb = Neon.create.scriptBuilder();
-    sb.emitPush(0);
-    sb.emitPush(0);
+
     const contractWitness = new tx.Witness({
         invocationScript: "0000",
         verificationScript: ""
