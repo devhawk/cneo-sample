@@ -119,7 +119,7 @@
             "type": "neo-contract",
             "request": "launch",
             "program": "${workspaceFolder}\\contract\\bin\\Debug\\netstandard2.0\\publish\\cneo.avm",
-            // NEO addresses are prefixed with an '@' symbol as an indicator the string should be converted into a 20 byte array
+            // Neo addresses are prefixed with an '@' symbol as an indicator the string should be converted into a 20 byte array
             "args": ["balanceOf", ["@AXwFY3qdGm6sYn8p59E7ckKWsZwdJyrHdn"]],
             "return-types": ["int"],
             "checkpoint": "${workspaceFolder}\\checkpoints\\3-mint-tokens-invoked.neo-express-checkpoint",
@@ -178,7 +178,7 @@
             "type": "neo-contract",
             "request": "launch",
             "program": "${workspaceFolder}\\contract\\bin\\Debug\\netstandard2.0\\publish\\cneo.avm",
-            // NEO addresses are prefixed with an '@' symbol as an indicator the string should be converted into a 20 byte array
+            // Neo addresses are prefixed with an '@' symbol as an indicator the string should be converted into a 20 byte array
             "args": ["refund", ["@AXwFY3qdGm6sYn8p59E7ckKWsZwdJyrHdn"]],
             "return-types": ["bool"],
             "checkpoint": "${workspaceFolder}\\checkpoints\\3-mint-tokens-invoked.neo-express-checkpoint",
@@ -210,7 +210,7 @@
             "type": "neo-contract",
             "request": "launch",
             "program": "${workspaceFolder}\\contract\\bin\\Debug\\netstandard2.0\\publish\\cneo.avm",
-            // NEO addresses are prefixed with an '@' symbol as an indicator the string should be converted into a 20 byte array
+            // Neo addresses are prefixed with an '@' symbol as an indicator the string should be converted into a 20 byte array
             "args": ["refund", ["@AXwFY3qdGm6sYn8p59E7ckKWsZwdJyrHdn"]],
             "return-types": ["bool"],
             "checkpoint": "${workspaceFolder}\\checkpoints\\3-mint-tokens-invoked.neo-express-checkpoint",
