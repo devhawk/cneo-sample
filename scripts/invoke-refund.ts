@@ -1,20 +1,29 @@
 import Neon, { api, wallet, tx, sc, nep5, rpc, u } from "@cityofzion/neon-js";
 
-const testUserAccount = Neon.create.account("10bb731683dddc262d61ddd528ad27d9890c6fbc478b855a67a49cf62c136399");
-const contractScriptHash = "30f41a14ca6019038b055b585d002b287b5fdd47";
+const operation = "refund"
 const rpcUrl = "http://127.0.0.1:49332";
-
-const script = Neon.create.script({
-    scriptHash: contractScriptHash,
-    operation: "refund",
-    args: [testUserAccount.scriptHash]
-});
+const testUserPrivateKey = "10bb731683dddc262d61ddd528ad27d9890c6fbc478b855a67a49cf62c136399";
+const testUserAccount = new wallet.Account(testUserPrivateKey);
+const contractScriptHash = "30f41a14ca6019038b055b585d002b287b5fdd47";
 
 async function mainAsync() {
-    const contractWitness = await api.getVerificationSignatureForSmartContract(rpcUrl, contractScriptHash);
+    const sb1 = Neon.create.scriptBuilder();
+    // I need to emit two parameters here, but the values don't matter
+    // cneo verification doesn't use them
+    sb1.emitPush(0);
+    sb1.emitPush(0);
+
+    const contractWitness = new tx.Witness({
+        invocationScript: sb1.str,
+        verificationScript: ""
+    })
+    contractWitness.scriptHash = contractScriptHash;
+
+    const sb2 = Neon.create.scriptBuilder();
+    sb2.emitAppCall(contractScriptHash, operation, [u.reverseHex(testUserAccount.scriptHash)]);
 
     let refundTx = new tx.InvocationTransaction({
-        script: script,
+        script: sb2.str,
         gas: 0,
         inputs: [
             {
@@ -33,7 +42,7 @@ async function mainAsync() {
     refundTx.addAttribute(
         tx.TxAttrUsage.Script, 
         u.reverseHex(wallet.getScriptHashFromAddress(testUserAccount.address)));
-    
+        
     const signature = wallet.sign(
         refundTx.serialize(false),
         testUserAccount.privateKey);
