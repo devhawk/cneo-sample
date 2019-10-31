@@ -227,19 +227,19 @@
                 }
             }
         },
-        // {
-        //     "name": "getRefundTarget",
-        //     "type": "neo-contract",
-        //     "request": "launch",
-        //     "program": "${workspaceFolder}\\contract\\bin\\Debug\\netstandard2.0\\publish\\cneo.avm",
-        //     "args": ["getRefundTarget", ["0x7b7214f85dd33258f379b975f366322ecfbf78803fd42bfa141f481766b9242e"]],
-        //     "checkpoint": "${workspaceFolder}\\checkpoints\\4-refund-invoked.neo-express-checkpoint",
-        //     "storage": [],
-        //     "runtime": {
-        //         "witnesses": {
-        //             "check-result": true
-        //         }
-        //     }
-        // },
+        {
+            "name": "getRefundTarget",
+            "type": "neo-contract",
+            "request": "launch",
+            "program": "${workspaceFolder}\\contract\\bin\\Debug\\netstandard2.0\\publish\\cneo.avm",
+            "args": ["getRefundTarget", ["0xf09af8f178fd0c5b5157e02cabd1858ad025fb82cc04848d43799ce17619189d"]],
+            "checkpoint": "${workspaceFolder}\\checkpoints\\4-refund-invoked.neo-express-checkpoint",
+            "storage": [],
+            "runtime": {
+                "witnesses": {
+                    "check-result": true
+                }
+            }
+        },
     ]
 }
