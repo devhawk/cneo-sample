@@ -26,6 +26,16 @@
             "protocol": "inspector",
         },
         {
+            "name": "invoke-transfer",
+            "type": "node",
+            "request": "launch",
+            "args": ["invoke-transfer.ts"],
+            "runtimeArgs": ["--nolazy", "-r", "ts-node/register"],
+            "sourceMaps": true,
+            "cwd": "${workspaceRoot}/scripts",
+            "protocol": "inspector",
+        },
+        {
             "name": "decimals",
             "type": "neo-contract",
             "request": "launch",

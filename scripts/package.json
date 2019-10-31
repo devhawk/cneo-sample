@@ -1,10 +1,11 @@
 {
-  "name": "invoke-mint-tokens",
+  "name": "cneo-invoke",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
     "mint-tokens": "ts-node invoke-mint-tokens.ts",
-    "refund": "ts-node invoke-refund.ts"
+    "refund": "ts-node invoke-refund.ts",
+    "transfer": "ts-node invoke-transfer.ts"
   },
   "devDependencies": {
     "@types/node": "^8.0.14",
