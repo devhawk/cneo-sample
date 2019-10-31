@@ -7,23 +7,15 @@ const testUserAccount = new wallet.Account(testUserPrivateKey);
 const contractScriptHash = "30f41a14ca6019038b055b585d002b287b5fdd47";
 
 async function mainAsync() {
-    const sb1 = Neon.create.scriptBuilder();
-    // I need to emit two parameters here, but the values don't matter
-    // cneo verification doesn't use them
-    sb1.emitPush(0);
-    sb1.emitPush(0);
 
-    const contractWitness = new tx.Witness({
-        invocationScript: sb1.str,
-        verificationScript: ""
-    })
-    contractWitness.scriptHash = contractScriptHash;
-
-    const sb2 = Neon.create.scriptBuilder();
-    sb2.emitAppCall(contractScriptHash, operation, [u.reverseHex(testUserAccount.scriptHash)]);
+    const script = Neon.create.script({
+        scriptHash: contractScriptHash,
+        operation: operation,
+        args: [u.reverseHex(testUserAccount.scriptHash)]
+    });
 
     let refundTx = new tx.InvocationTransaction({
-        script: sb2.str,
+        script: script,
         gas: 0,
         inputs: [
             {
@@ -46,8 +38,18 @@ async function mainAsync() {
     const signature = wallet.sign(
         refundTx.serialize(false),
         testUserAccount.privateKey);
-    
     refundTx.addWitness(tx.Witness.fromSignature(signature, testUserAccount.publicKey));
+
+    // I need to emit two parameters here, but the values don't matter
+    // as cneo verification doesn't use them
+    const sb = Neon.create.scriptBuilder();
+    sb.emitPush(0);
+    sb.emitPush(0);
+    const contractWitness = new tx.Witness({
+        invocationScript: "0000",
+        verificationScript: ""
+    })
+    contractWitness.scriptHash = contractScriptHash;
     refundTx.addWitness(contractWitness);
 
     console.log(JSON.stringify(refundTx.export(), null, 2));

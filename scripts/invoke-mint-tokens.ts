@@ -7,11 +7,16 @@ const testUserAccount = new wallet.Account(testUserPrivateKey);
 const contractScriptHash = "30f41a14ca6019038b055b585d002b287b5fdd47";
 
 async function mainAsync() {
-    const sb = Neon.create.scriptBuilder();
+
+    const script = Neon.create.script({
+        scriptHash: contractScriptHash,
+        operation: operation,
+    });
+    
     const config = {
         api: new api.neoCli.instance(rpcUrl),
         account: testUserAccount,
-        script: sb.emitAppCall(contractScriptHash, "mintTokens").str,
+        script: script,
         intents: api.makeIntent({ NEO: 1000 }, contractScriptHash)
      };
 
