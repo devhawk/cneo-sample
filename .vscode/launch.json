@@ -165,9 +165,21 @@
             "request": "launch",
             "program": "${workspaceFolder}\\contract\\bin\\Debug\\netstandard2.0\\publish\\cneo.avm",
             "args": ["getTxInfo", ["0xd2cbfbe9bec47318113e4d41c95174023851df74d7cb2a9e4049d5c84d2b2a6d"]],
-            "checkpoint": "${workspaceFolder}\\checkpoints\\3-mint-tokens-invoked.neo-express-checkpoint",
-            "storage": [],
-            "runtime": {
+            "storage": [
+                {
+                  "key": "0x8a6f1e4f13022b26e56e957cb8251b082f0748b1007465737361",
+                  "value": "0x174876e800"
+                },
+                {
+                  "key": "0x796c707075536c61746f740074636172746e6f63",
+                  "value": "0x174876e800"
+                },
+                {
+                  "key": "0xd2cbfbe9bec47318113e4d41c95174023851df74d7cb2a9e4049d5c84d2b2a6d006f666e497874",
+                  "value": "0x174876e80005028a6f1e4f13022b26e56e957cb8251b082f0748b1140000000380"
+                },
+              ],
+              "runtime": {
                 "witnesses": {
                     "check-result": true
                 }
@@ -182,7 +194,6 @@
             "args": ["refund", ["@AXwFY3qdGm6sYn8p59E7ckKWsZwdJyrHdn"]],
             "return-types": ["bool"],
             "checkpoint": "${workspaceFolder}\\checkpoints\\3-mint-tokens-invoked.neo-express-checkpoint",
-            "storage": [],
             "utxo": {
                 "inputs": [
                     {
