@@ -19,9 +19,6 @@ and the Neo Smart Contract Debugger for Visual Studio Code.
 
 ## Installation
 
-Download the prerelease versions of Neo Express, NEON-DE and the Neo Smart Contract
-Debugger from [Harry's OneDrive](https://vcagecom56739-my.sharepoint.com/:f:/g/personal/harrypierson_ngd_neo_org/EjpBghBNJO5IuCxKjMiOTagBCpPA1QOPngvjPx-2y9h90g?e=e9ur9l).
-
 To install the Neo Smart Contract Debugger .VSIX file, Follow the
 [official VSCode documentation](https://code.visualstudio.com/docs/editor/extension-gallery#_install-from-a-vsix).
 
